@@ -63,6 +63,7 @@
     - alacritty
     - network-manager-openvpn-gnome
     - flameshot
+    - peek
     - oem-somerville-bulbasaur-meta
   environment:
     DEBIAN_FRONTEND: noninteractive

@@ -1,15 +1,21 @@
 # Playbook Local Machine
 
-This project have a playbook with all tasks to provision my personal machine, focused to development and other uses.
+![Screenshot](./screenshot.gif)
+
+This project have a playbook and many roles that provision my workflow, focused to my laptop XPS 13 9310, including the kernel and libs OEM.
 
 Systems supported:
 
 - Ubuntu 20.04
 - PopOS 20.04
 
+System that will be included:
+
+- PopOS 22.04
+
 ## Preparing to execution
 
-1. Clone this project 
+1. Clone this project
 
 ```bash
 git clone git@github.com:gilsondev/playbook-local-machine.git

@@ -61,6 +61,7 @@
     - { key: "/org/gnome/shell/extensions/pop-shell/gap-inner", value: "'uint32 4'" }
     - { key: "/org/gnome/shell/extensions/pop-shell/gap-outer", value: "'uint32 4'" }
     - { key: "/org/gnome/shell/extensions/vitals/hot-sensors", value: "['_processor_average_', '_memory_usage_', '__temperature_avg__']" }
+    - { key: "/org/gnome/shell/favorite-apps", value: "['org.gnome.Nautilus.desktop', 'firefox.desktop', 'com.todoist.Todoist.desktop', 'org.telegram.desktop.desktop', 'slack.desktop', 'md.obsidian.Obsidian.desktop', 'com.spotify.Client.desktop', 'com.alacritty.Alacritty.desktop', 'code.desktop', 'rest.insomnia.Insomnia.desktop']" }
   become: false
 
 - name: 'Reboot to apply Gnome settings'

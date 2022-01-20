@@ -16,5 +16,5 @@
 - name: 'Install colorscheme to Alacrity'
   ansible.builtin.copy:
     src: "files/alacritty.yml"
-    dest: "{{ ansible_env.HOME }}.config/alacritty/dracula.yml"
+    dest: "{{ ansible_env.HOME }}/.config/alacritty/dracula.yml"
   become: false
