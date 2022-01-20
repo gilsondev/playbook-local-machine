@@ -16,6 +16,7 @@
     - { file: "files/zshrc", link: "{{ ansible_env.HOME }}/.zshrc" }
     - { file: "files/gitconfig", link: "{{ ansible_env.HOME }}/.gitconfig" }
     - { file: "files/tmux.conf", link: "{{ ansible_env.HOME }}/.tmux.conf" }
+    - { file: "files/p10k.zsh", link: "{{ ansible_env.HOME }}/.p10k.zsh" }
     - { file: "files/ideavimrc", link: "{{ ansible_env.HOME }}/.ideavimrc" }
     - { file: "files/Xresources", link: "{{ ansible_env.HOME }}/.Xresources" }
     - { file: "files/nvim", link: "{{ ansible_env.HOME }}/.config/" }
