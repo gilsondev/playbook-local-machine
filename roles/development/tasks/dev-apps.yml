@@ -1,0 +1,107 @@
+---
+- name: 'Install apps'
+  ansible.builtin.apt:
+    name: "{{ item }}"
+    state: latest
+  with_items:
+    - git
+    - tmux
+    - zsh
+    - direnv
+    - neovim
+    - ripgrep
+    - make
+    - libssl-dev
+    - zlib1g-dev
+    - libbz2-dev
+    - libreadline-dev
+    - libsqlite3-dev
+    - wget
+    - curl
+    - llvm
+    - libncurses5-dev
+    - libncursesw5-dev
+    - xz-utils
+    - tk-dev
+    - libffi-dev
+    - liblzma-dev
+    - python-openssl
+  environment:
+    DEBIAN_FRONTEND: noninteractive
+  become: true
+
+- name: 'Install VS Code'
+  ansible.builtin.apt:
+    deb: https://code.visualstudio.com/sha/download?build=stable&os=linux-deb-x64
+    state: present
+  environment:
+    DEBIAN_FRONTEND: noninteractive
+  become: true
+
+- name: 'Install Oh My ZSH'
+  import_role:
+    name: gantsign.oh-my-zsh
+  become: false
+
+- name: 'Install Tmux Package Manager'
+  ansible.builtin.git:
+    repo: https://github.com/tmux-plugins/tpm.git
+    dest: "{{ ansible_env.HOME }}/.tmux.plugins/tmp"
+  become: false
+
+- name: 'Install NVM'
+  import_role:
+    name: grzegorznowak.nvm_node
+  become: true
+  become_method: sudo
+
+- name: 'Install pyenv'
+  import_role:
+    name: avanov.pyenv
+  environment:
+    PYTHON_CONFIGURE_OPTS: "--enable-shared"
+  become: false
+
+- name: 'Install pyenv-virtualenvwrapper'
+  ansible.builtin.git:
+    repo: https://github.com/pyenv/pyenv-virtualenvwrapper.git
+    dest: "{{ ansible_env.HOME }}/.pyenv/plugins/pyenv-virtualenvwrapper"
+
+# TODO: Fix this
+- name: 'Install pip packages in jupyter3 and tools3'
+  ansible.builtin.script: 'files/prepare-pyenv-virtualenvs.sh'
+  args:
+    executable: /bin/zsh
+  become: false
+
+- name: 'Install Poetry'
+  ansible.builtin.script: 'files/install-poetry.sh'
+  args:
+    executable: /bin/zsh
+  become: false
+
+- name: 'Install npm packages'
+  community.general.npm:
+    name: "{{ item }}"
+    global: yes
+    state: present
+  with_items:
+    - yarn
+    - prettier
+    - create-react-app
+    - nativefier
+    - webpack
+    - json-server
+    - javascript-typescript-langserver
+    - "@vue/cli"
+  become: false
+
+- name: 'Install SDKMAN'
+  import_role:
+    name: gantsign.sdkman
+  become: false
+
+- name: 'Install Jetbrains Toolbox'
+  import_role:
+    name: webarchitect609.jet_brains_toolbox
+  become: true

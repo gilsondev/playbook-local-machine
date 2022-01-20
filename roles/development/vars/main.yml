@@ -1,0 +1,29 @@
+# NVM
+nvm_node_version: "16.2.0"
+nvm_user_name: "{{ ansible_env.USER }}"
+nvm_dir: "{{ ansible_env.HOME }}/.nvm"
+
+# Pyenv
+pyenv_path: "{{ ansible_env.HOME }}/.pyenv"
+pyenv_setting_path: "{{ ansible_env.HOME}}/.zshrc"
+pyenv_enable_autocompletion: yes
+pyenv_python_versions:
+  - "3.9.1"
+  - "3.8.6"
+  - "3.7.10"
+pyenv_virtualenvs:
+  - venv_name: "jupyter3"
+    py_version: "3.8.6"
+
+  - venv_name: "tools3"
+    py_version: "3.8.6"
+pyenv_global: "3.8.6 3.9.1 3.7.10 jupyter3 tools3"
+
+# Jetbrains Toolbox
+toolbox_version: "1.22.10970"
+toolbox_install_dir: "/opt"
+toolbox_install_for_user: "{{ ansible_env.USER }}"
+
+# Oh My ZSH
+users:
+  - username: "{{ ansible_env.USER }}"

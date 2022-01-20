@@ -1,0 +1,25 @@
+---
+- name: 'Remove unused files'
+  ansible.builtin.file:
+    path: "{{ item }}"
+    state: absent
+  with_items:
+    - "{{ ansible_env.HOME }}/.zshrc"
+    - "{{ ansible_env.HOME }}/.tmux.conf"
+  become: false
+
+- name: 'Copy dotenv files'
+  ansible.builtin.copy:
+    src: "{{ item.file }}"
+    dest: "{{ item.link }}"
+  with_items:
+    - { file: "files/zshrc", link: "{{ ansible_env.HOME }}/.zshrc" }
+    - { file: "files/gitconfig", link: "{{ ansible_env.HOME }}/.gitconfig" }
+    - { file: "files/tmux.conf", link: "{{ ansible_env.HOME }}/.tmux.conf" }
+    - { file: "files/ideavimrc", link: "{{ ansible_env.HOME }}/.ideavimrc" }
+    - { file: "files/Xresources", link: "{{ ansible_env.HOME }}/.Xresources" }
+    - { file: "files/nvim", link: "{{ ansible_env.HOME }}/.config/nvim" }
+    - { file: "files/alacritty", link: "{{ ansible_env.HOME }}/.config/alacritty" }
+  become: false
+
+# TODO: Install script to load private envs (load-private-envs.sh)

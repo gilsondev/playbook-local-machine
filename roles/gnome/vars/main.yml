@@ -1,0 +1,36 @@
+---
+gnome_user: "{{ ansible_env.USER }}"
+gnome_extensions:
+  - id: 1401      # Bluetooth Quick Connect
+    enable: yes
+  - id: 517       # Caffeine
+    enable: yes
+  - id: 779       # Clipboard Indicator
+    enable: yes
+  - id: 1486      # Extension Sync
+    enable: yes
+  - id: 3730      # Floating Dock
+    enable: yes
+  - id: 1319      # GSConnect
+    enable: yes
+  - id: 3843      # Just Perfection
+    enable: yes
+  - id: 906       # Sound Input & Output Device Chooser
+    enable: yes
+  - id: 1653      # Tweaks & Extensions in System Menu 
+    enable: yes
+  - id: 1460      # Vitals
+    enable: yes
+gnome_dconf:
+  - key: /org/gnome/desktop/input-sources
+    value: "[/]\ncurrent=uint32 0\nmru-sources=[('xkb', 'us+alt-intl'), ('xkb', 'br')]\nper-window=false\nsources=[('xkb', 'br'), ('xkb', 'us+alt-intl')]\nxkb-options=@as []"
+  - key: /org/gnome/desktop/interface
+    value: "[/]\nclock-format='24h'\nclock-show-weekday=true\nenable-animations=true\nenable-hot-corners=false\ngtk-im-module='ibus'\nshow-battery-percentage=true"
+  - key: /org/gnome/desktop/wm/preferences
+    value: "[/]\nnum-workspaces=6"
+  - key: /org/gnome/desktop/input-sources
+    value: "[mouse]\nspeed=1.0\n\n[touchpad]\nspeed=0.70588235294117641\ntwo-finger-scrolling-enabled=true"
+  - key: /org/gnome/desktop/wm/keybindings
+    value: "[/]\nswitch-input-source=['<Super>space', '<Primary><Alt>k']\nswitch-input-source-backward=['<Shift><Super>space', '<Primary><Shift><Alt>k']\nswitch-to-workspace-1=['<Super>1']\nswitch-to-workspace-2=['<Super>2']\nswitch-to-workspace-3=['<Super>3']\nswitch-to-workspace-4=['<Super>4']\nswitch-to-workspace-5=['<Super>5']\nswitch-to-workspace-6=['<Super>6']"
+  - key: /org/gnome/settings-daemon/plugins/media-keys
+    value: "[/]\ncustom-keybindings=['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/']\nterminal=@as []\n\n[custom-keybindings/custom0]\nbinding='<Super>t'\ncommand='/usr/bin/alacritty'\nname='Run Alacritty'"

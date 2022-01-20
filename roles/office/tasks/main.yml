@@ -1,0 +1,18 @@
+---
+- include_tasks: insync.yml
+- include_tasks: syncthing.yml
+
+- name: 'Install flatpak apps'
+  community.general.flatpak:
+      name: "{{ item }}"
+      method: user
+      state: present
+  with_items:
+    - org.onlyoffice.desktopeditors
+    - com.todoist.Todoist
+    - md.obsidian.Obsidian
+    - org.gnome.gitlab.somas.Apostrophe
+    - org.mozilla.Thunderbird
+    - rest.insomnia.Insomnia
+    - us.zoom.Zoom
+    - com.slack.Slack

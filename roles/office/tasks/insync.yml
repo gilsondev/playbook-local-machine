@@ -1,0 +1,21 @@
+---
+- name: 'Insync: Add an apt key by id from a keyserver'
+  ansible.builtin.apt_key:
+    keyserver: keyserver.ubuntu.com
+    id: ACCAF35C
+  become: true
+
+- name: 'Insync: Add specified repository into sources list'
+  ansible.builtin.apt_repository:
+    repo: "deb http://apt.insync.io/ubuntu {{ ansible_distribution_release }} non-free contrib"
+    state: present
+  become: true
+
+- name: 'Insync: Install'
+  ansible.builtin.apt:
+    name: "{{ item }}"
+    state: latest
+  with_items:
+    - insync
+    - insync-nautilus
+  become: true

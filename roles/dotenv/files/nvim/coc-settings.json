@@ -1,0 +1,7 @@
+{
+    "coc.preferences.formatOnSaveFiletypes": ["py", "yaml", "json"],
+    "python.venvPath": "/home/gilson/Developer/.virtualenvs",
+    "python.formatting.provider": "black",
+    "pyright.disableDiagnostics": false,
+    "diagnostic.displayByAle": false
+}

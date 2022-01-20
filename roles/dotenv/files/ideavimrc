@@ -1,0 +1,49 @@
+set idearefactormode=keep
+set ideajoin
+
+let mapleader = " "
+
+" #### Move line in command mode
+nnoremap <C-j> :m +1<CR>
+nnoremap <C-k> :m -2<CR>
+
+" #### Mode line in insert mode
+inoremap <C-j> <Esc>:m +1<CR>gi
+inoremap <C-k> <Esc>:m -2<CR>gi
+
+" #### Scrolling
+nmap <leader>d <C-d>
+nmap <leader>u <C-u>
+vmap <leader>d <C-d>
+vmap <leader>u <C-u>
+
+" #### Sidebar
+nmap <C-b> :NERDTreeToggle<CR>
+
+" #### IDE Mappings
+nmap <leader>f :action Find<CR>
+nmap <leader>e :action RecentFiles<CR>
+nmap <leader>b :action GotoDeclaration<CR>
+nmap <leader>g :action GotoLine<CR>
+nmap <leader>h :action TypeHierarchy<CR>
+nmap <leader>0 :action FileStructure<CR>
+nmap <leader>o :action OverrideMethods<CR>
+nmap <leader>p :action ParameterInfo<CR>
+nmap <leader>q :action QuickJavaDoc<CR>
+nmap <leader>r :action Replace<CR>
+nmap <leader>s :action SaveAll<CR>
+nmap <leader>u :action GotoSuperMethod<CR>
+nmap <leader>' :action SearchEverywhere<CR>
+
+" #### Extensions
+" Surround: https://github.com/tpope/vim-surround#surroundvim
+set surround
+
+" NERDTree: https://github.com/JetBrains/ideavim/wiki/NERDTree-support
+set NERDTree
+
+" Multiple cursors: https://github.com/JetBrains/ideavim/wiki/Emulated-plugins#multiple-cursors
+set multiple-cursors
+
+" Commentary: https://github.com/JetBrains/ideavim/wiki/Emulated-plugins#commentary
+set commentary

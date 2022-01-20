@@ -1,0 +1,26 @@
+---
+- name: 'Download and Extract exa'
+  ansible.builtin.unarchive:
+    src: "https://github.com/ogham/exa/releases/download/{{ exa_version }}/exa-linux-x86_64-{{ exa_version }}.zip"
+    dest: /tmp
+    remote_src: yes
+  become: false
+
+- name: 'Create a zsh directory'
+  ansible.builtin.file:
+    path: "/usr/local/share/zsh/site-functions"
+    state: directory
+  become: true
+
+- name: 'Install exa'
+  ansible.builtin.copy:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+    owner: root
+    group: users
+    remote_src: yes
+  with_items:
+    - { src: "/tmp/bin/exa", dest: "/usr/local/bin/exa" }
+    - { src: "/tmp/man/exa.1", dest: "/usr/share/man/man1/exa.1" }
+    - { src: "/tmp/completions/exa.zsh", dest: "/usr/local/share/zsh/site-functions/_exa" }
+  become: true

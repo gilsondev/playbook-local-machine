@@ -1,0 +1,4 @@
+---
+- name: 'Customize Gnome'
+  import_role:
+    name: petermosmans.customize-gnome

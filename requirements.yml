@@ -1,0 +1,11 @@
+---
+collections:
+  - name: community.general 
+
+roles:
+  - name: grzegorznowak.nvm_node
+  - name: avanov.pyenv
+  - name: webarchitect609.jet_brains_toolbox
+  - name: gantsign.oh-my-zsh
+  - name: gantsign.sdkman
+  - name: petermosmans.customize-gnome

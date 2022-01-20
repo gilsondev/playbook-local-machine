@@ -1,0 +1,97 @@
+---
+- name: 'Update repositories and upgrade system'
+  ansible.builtin.apt:
+    name: "*"    
+    state: latest
+    update_cache: yes
+    allow_downgrade: yes
+  become: true
+
+- name: 'Change Max user Watches'
+  sysctl:
+      name: fs.inotify.max_user_watches
+      value: 1024288
+      state: present
+  become: true
+
+- name: 'Basic: Add PPAs'
+  ansible.builtin.apt_repository:
+    repo: "{{ item }}"
+  with_items:
+    - "ppa:aslatter/ppa"  # Alacritty
+  when: ansible_distribution == "Ubuntu"
+  become: true
+
+- name: 'Install Flatpak'
+  ansible.builtin.apt:
+    name: flatpak
+    state: latest
+  become: true
+
+- name: 'Add the flathub flatpak repository remote to the user installation'
+  community.general.flatpak_remote:
+    name: flathub
+    state: present
+    flatpakrepo_url: https://dl.flathub.org/repo/flathub.flatpakrepo
+    method: user
+
+- name: 'Install apps'
+  ansible.builtin.apt:
+    name: "{{ item }}"
+    state: latest
+  with_items:
+    - vlc
+    - gimp
+    - gparted
+    - synaptic
+    - playerctl
+    - ubuntu-restricted-extras
+    - preload
+    - alacarte
+    - gnome-tweak-tool
+    - apt-transport-https
+    - ca-certificates 
+    - curl
+    - software-properties-common
+    - fonts-firacode
+    - fonts-cascadia-code
+    - fonts-ibm-plex
+    - fonts-noto-extra
+    - build-essential
+    - gcc
+    - powerline
+    - alacritty
+    - network-manager-openvpn-gnome
+    - flameshot
+    - oem-somerville-bulbasaur-meta
+  environment:
+    DEBIAN_FRONTEND: noninteractive
+  become: true
+
+- name: 'Update packages to install OEM Dell XPS packages and kernel'
+  ansible.builtin.apt:
+    name: "*"    
+    state: latest
+    update_cache: yes
+  become: true
+
+- name: 'Install flatpak apps'
+  community.general.flatpak:
+      name: "{{ item }}"
+      method: user
+      state: present
+  with_items:
+    - com.bitwarden.desktop
+    - com.github.tchx84.Flatseal
+    - com.spotify.Client
+    - com.transmissionbt.Transmission
+    - com.valvesoftware.Steam
+    - org.gtk.Gtk3theme.Pop-dark
+    - org.telegram.desktop
+
+- name: 'Install Nerd Fonts'
+  ansible.builtin.script: 'files/install-nerd-fonts.sh'
+  become: true
+  become_method: sudo
+
+- include_tasks: exa.yml
