@@ -2,6 +2,11 @@
 
 This project have a playbook with all tasks to provision my personal machine, focused to development and other uses.
 
+Systems supported:
+
+- Ubuntu 20.04
+- PopOS 20.04
+
 ## Preparing to execution
 
 1. Clone this project 
@@ -14,7 +19,5 @@ git clone git@github.com:gilsondev/playbook-local-machine.git
 
 ```bash
 cd playbook-local-machine
-python3 -m venv .venv
-source .venv/bin/activate
-pip install -r requirements.txt
+make setup
 ```
