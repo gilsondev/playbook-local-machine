@@ -12,3 +12,9 @@
 - name: 'Install colorscheme to VS Code'
   ansible.builtin.command: 'code --install-extension /tmp/dracula-pro.vsix' 
   become: false
+
+- name: 'Install colorscheme to Alacrity'
+  ansible.builtin.copy:
+    src: "files/alacritty.yml"
+    dest: "{{ ansible_env.HOME }}.config/alacritty/dracula.yml"
+  become: false
