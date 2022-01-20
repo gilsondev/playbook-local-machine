@@ -13,6 +13,7 @@ init:
 install:
 	@$(PIP) install -r requirements.txt
 	@$(ANSIBLE_GALAXY) install -r requirements.yml
+	@sudo apt-get install -y sshpass
 
 .PHONY: setup
 setup: init install

@@ -18,8 +18,12 @@
     - { file: "files/tmux.conf", link: "{{ ansible_env.HOME }}/.tmux.conf" }
     - { file: "files/ideavimrc", link: "{{ ansible_env.HOME }}/.ideavimrc" }
     - { file: "files/Xresources", link: "{{ ansible_env.HOME }}/.Xresources" }
-    - { file: "files/nvim", link: "{{ ansible_env.HOME }}/.config/nvim" }
-    - { file: "files/alacritty", link: "{{ ansible_env.HOME }}/.config/alacritty" }
+    - { file: "files/nvim", link: "{{ ansible_env.HOME }}/.config/" }
+    - { file: "files/alacritty", link: "{{ ansible_env.HOME }}/.config/" }
+  become: false
+
+- name: 'Install Vim plugins'
+  ansible.builtin.command: "/usr/bin/nvim --headless +PlugInstall +qall"
   become: false
 
 # TODO: Install script to load private envs (load-private-envs.sh)

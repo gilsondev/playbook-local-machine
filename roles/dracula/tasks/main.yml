@@ -5,9 +5,9 @@
 
 - name: 'Copy Dracula VS Code plugin'
   ansible.builtin.copy:
-    src: 'files/visual-studio-code/dracula-pro.vsix'
-    dest: '/tmp/dracula-pro/vsix'
-  become: false
+    src: "files/dracula-pro.vsix"
+    dest: "/tmp/dracula-pro.vsix"
+  become: true
 
 - name: 'Install colorscheme to VS Code'
   ansible.builtin.command: 'code --install-extension /tmp/dracula-pro.vsix' 

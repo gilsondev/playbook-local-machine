@@ -30,6 +30,14 @@
     DEBIAN_FRONTEND: noninteractive
   become: true
 
+- name: 'Install flatpak apps'
+  community.general.flatpak:
+      name: "{{ item }}"
+      method: user
+      state: present
+  with_items:
+    - rest.insomnia.Insomnia
+
 - name: 'Install VS Code'
   ansible.builtin.apt:
     deb: https://code.visualstudio.com/sha/download?build=stable&os=linux-deb-x64
@@ -38,22 +46,20 @@
     DEBIAN_FRONTEND: noninteractive
   become: true
 
-- name: 'Install Oh My ZSH'
-  import_role:
-    name: gantsign.oh-my-zsh
-  become: false
-
-- name: 'Install Tmux Package Manager'
-  ansible.builtin.git:
-    repo: https://github.com/tmux-plugins/tpm.git
-    dest: "{{ ansible_env.HOME }}/.tmux.plugins/tmp"
-  become: false
-
 - name: 'Install NVM'
   import_role:
     name: grzegorznowak.nvm_node
   become: true
   become_method: sudo
+
+- name: 'Change NVM folder permissions'
+  ansible.builtin.file:
+    path: "{{ nvm_dir }}"
+    owner: "{{ ansible_env.USER }}"
+    group: "{{ ansible_env.USER }}"
+    state: directory
+    recurse: yes
+  become: true
 
 - name: 'Install pyenv'
   import_role:
@@ -70,14 +76,14 @@
 # TODO: Fix this
 - name: 'Install pip packages in jupyter3 and tools3'
   ansible.builtin.script: 'files/prepare-pyenv-virtualenvs.sh'
-  args:
-    executable: /bin/zsh
+  # args:
+  #   executable: /bin/zsh
   become: false
 
 - name: 'Install Poetry'
   ansible.builtin.script: 'files/install-poetry.sh'
-  args:
-    executable: /bin/zsh
+  # args:
+  #   executable: /bin/zsh
   become: false
 
 - name: 'Install npm packages'

@@ -18,9 +18,10 @@
     dest: "{{ item.dest }}"
     owner: root
     group: users
+    mode: "{{ item.mode }}"
     remote_src: yes
   with_items:
-    - { src: "/tmp/bin/exa", dest: "/usr/local/bin/exa" }
-    - { src: "/tmp/man/exa.1", dest: "/usr/share/man/man1/exa.1" }
-    - { src: "/tmp/completions/exa.zsh", dest: "/usr/local/share/zsh/site-functions/_exa" }
+    - { src: "/tmp/bin/exa", dest: "/usr/local/bin/exa", mode: "a+x" }
+    - { src: "/tmp/man/exa.1", dest: "/usr/share/man/man1/exa.1", mode: "" }
+    - { src: "/tmp/completions/exa.zsh", dest: "/usr/local/share/zsh/site-functions/_exa", mode: "" }
   become: true

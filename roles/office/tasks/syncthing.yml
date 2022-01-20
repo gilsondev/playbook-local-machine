@@ -27,7 +27,7 @@
 - name: 'Enable Syncthing service'
   ansible.builtin.systemd:
     name: "syncthing@{{ ansible_env.USER }}.service"
-    enabled: yes
+    enabled: no
     masked: no
-    state: restarted
+    state: stopped
   become: true

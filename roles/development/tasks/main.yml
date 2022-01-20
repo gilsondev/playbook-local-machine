@@ -1,4 +1,4 @@
 ---
 - include_tasks: dev-apps.yml
 - include_tasks: docker.yml
-- include_tasks: zinit.yml
+- include_tasks: terminal.yml

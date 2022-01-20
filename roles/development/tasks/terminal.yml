@@ -1,0 +1,31 @@
+---
+- name: 'Install Oh My ZSH'
+  import_role:
+    name: gantsign.oh-my-zsh
+  become: false
+
+- name: 'Install Tmux Package Manager'
+  ansible.builtin.git:
+    repo: https://github.com/tmux-plugins/tpm.git
+    dest: "{{ ansible_env.HOME }}/.tmux/plugins/tmp"
+  become: false
+
+- name: 'Check if zinit installed'
+  ansible.builtin.stat:
+    path: "{{ ansible_env.HOME }}/.local/share/zinit"
+  register: zinit_installed
+  become: false
+
+- name: 'Create a zinit directory'
+  ansible.builtin.file:
+    path: "{{ ansible_env.HOME }}/.local/share/zinit/zinit.git"
+    state: directory
+  become: false
+  when: zinit_installed.stat.isdir is not defined or not zinit_installed.stat.isdir
+
+- name: 'Clone zinit repository'
+  ansible.builtin.git:
+    repo: https://github.com/zdharma-continuum/zinit.git
+    dest: "{{ ansible_env.HOME }}/.local/share/zinit/zinit.git"
+  become: false
+  when: zinit_installed.stat.isdir is not defined or not zinit_installed.stat.isdir
