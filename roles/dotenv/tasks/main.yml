@@ -24,7 +24,7 @@
   become: false
 
 - name: 'Install Vim plugins'
-  ansible.builtin.command: "/usr/bin/nvim --headless +PlugInstall +qall"
+  ansible.builtin.command: "/usr/bin/nvim --headless +PlugInstall +CocInstall +qall"
   become: false
 
 # TODO: Install script to load private envs (load-private-envs.sh)

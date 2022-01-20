@@ -38,6 +38,15 @@
   with_items:
     - rest.insomnia.Insomnia
 
+- name: 'Install BAT'
+  ansible.builtin.apt:
+    deb: "https://github.com/sharkdp/bat/releases/download/v{{ bat_version }}/bat_{{ bat_version }}_amd64.deb"
+    state: present
+  environment:
+    DEBIAN_FRONTEND: noninteractive
+  become: true
+
+
 - name: 'Install VS Code'
   ansible.builtin.apt:
     deb: https://code.visualstudio.com/sha/download?build=stable&os=linux-deb-x64

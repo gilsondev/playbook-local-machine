@@ -27,3 +27,6 @@ toolbox_install_for_user: "{{ ansible_env.USER }}"
 # Oh My ZSH
 users:
   - username: "{{ ansible_env.USER }}"
+
+# BAT
+bat_version: "0.18.3"
