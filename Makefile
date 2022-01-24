@@ -37,8 +37,8 @@ vagrant-setup: vagrant-clean vagrant-up
 
 .PHONY: provision-test
 provision-test:
-	@ansible-playbook playbook.yml -i hosts --limit "vagrant"
+	@$(VENV)/bin/ansible-playbook playbook.yml -i hosts --limit "vagrant"
 
 .PHONY: provision
 provision:
-	@ansible-playbook playbook.yml -i hosts --limit "local" -K
+	@$(VENV)/bin/ansible-playbook playbook.yml -i hosts --limit "local" -K
