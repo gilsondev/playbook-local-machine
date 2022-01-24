@@ -1,4 +1,4 @@
-VENV = .venv
+VENV = $(PWD)/.venv
 PYTHON = $(VENV)/bin/python
 PIP = $(VENV)/bin/pip
 ANSIBLE = $(VENV)/bin/ansible
