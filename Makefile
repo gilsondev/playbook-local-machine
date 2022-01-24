@@ -7,7 +7,7 @@ ANSIBLE_GALAXY = $(VENV)/bin/ansible-galaxy
 
 .PHONY: init
 init:
-	@python -m venv $(VENV)
+	@python3 -m venv $(VENV)
 
 .PHONY: install
 install:
