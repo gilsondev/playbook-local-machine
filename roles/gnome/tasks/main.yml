@@ -1,68 +1,27 @@
 ---
+- name: 'Include vars'
+  include_vars:
+    file: ubuntu-2004.yml
+  when: (ansible_distribution == "Ubuntu" and ansible_distribution_version == "20.04") or
+        (ansible_distribution == "Pop!_OS" and ansible_distribution_version == "20.04")
+
+- name: 'Include vars'
+  include_vars:
+    file: ubuntu-2110.yml
+  when: (ansible_distribution == "Ubuntu" and ansible_distribution_version == "21.10") or
+        (ansible_distribution == "Pop!_OS" and ansible_distribution_version == "21.10")
+
 - name: 'Customize Gnome'
   import_role:
     name: petermosmans.customize-gnome
 
-- name: 'Write GNOME personal settings with DConf'
-  community.general.dconf:
-    key: "{{ item.key }}"
-    value: "{{ item.value }}"
-    state: present
-  with_items:
-    - { key: "/org/gnome/desktop/input-sources/current", value: "'uint32 0'" }
-    - { key: "/org/gnome/desktop/input-sources/mru-sources", value: "[('xkb', 'us+alt-intl'), ('xkb', 'br')]" }
-    - { key: "/org/gnome/desktop/input-sources/per-window", value: "false" }
-    - { key: "/org/gnome/desktop/input-sources/sources", value: "[('xkb', 'br'), ('xkb', 'us+alt-intl')]" }
-    - { key: "/org/gnome/desktop/input-sources/xkb-options", value: "'@as []'" }
-    - { key: "/org/gnome/desktop/peripherals/mouse/speed", value: "'1.0'" }
-    - { key: "/org/gnome/desktop/peripherals/mouse/touchpad", value: "'0.70588235294117641'" }
-    - { key: "/org/gnome/desktop/peripherals/mouse/two-finger-scrolling-enabled", value: "true" }
-    - { key: "/org/gnome/desktop/interface/clock-format", value: "'24h'" }
-    - { key: "/org/gnome/desktop/interface/clock-show-weekday", value: "true" }
-    - { key: "/org/gnome/desktop/interface/enable-animations", value: "true" }
-    - { key: "/org/gnome/desktop/interface/enable-hot-corners", value: "false" }
-    - { key: "/org/gnome/desktop/interface/gtk-im-module", value: "'ibus'" }
-    - { key: "/org/gnome/desktop/interface/show-battery-percentage", value: "true" }
-    - { key: "/org/gnome/mutter/dynamic-workspaces", value: "false" }
-    - { key: "/org/gnome/desktop/wm/preferences/num-workspaces", value: "6" }
-    - { key: "/org/gnome/desktop/wm/keybindings/switch-input-source", value: "['<Super>space', '<Primary><Alt>k']" }
-    - { key: "/org/gnome/desktop/wm/keybindings/switch-input-source-backward", value: "['<Shift><Super>space', '<Primary><Shift><Alt>k']" }
-    - { key: "/org/gnome/desktop/wm/keybindings/switch-to-workspace-1", value: "['<Super>1']" }
-    - { key: "/org/gnome/desktop/wm/keybindings/switch-to-workspace-2", value: "['<Super>2']" }
-    - { key: "/org/gnome/desktop/wm/keybindings/switch-to-workspace-3", value: "['<Super>3']" }
-    - { key: "/org/gnome/desktop/wm/keybindings/switch-to-workspace-4", value: "['<Super>4']" }
-    - { key: "/org/gnome/desktop/wm/keybindings/switch-to-workspace-5", value: "['<Super>5']" }
-    - { key: "/org/gnome/desktop/wm/keybindings/switch-to-workspace-6", value: "['<Super>6']" }
-    - { key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings", value: "['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/']" }
-    - { key: "/org/gnome/settings-daemon/plugins/media-keys/terminal", value: "'@as []'" }
-    - { key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/binding", value: "'<Super>t'" }
-    - { key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/command", value: "'/usr/bin/alacritty'" }
-    - { key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/name", value: "'Run Alacritty'" }
-    - { key: "/org/gnome/shell/extensions/clipboard-indicator/enable-keybindings", value: "false" }
-    - { key: "/org/gnome/shell/extensions/clipboard-indicator/history-size", value: "50" }
-    - { key: "/org/gnome/shell/extensions/jus-perfection/accessibility-menu", value: "false" }
-    - { key: "/org/gnome/shell/extensions/jus-perfection/aggregate-menu", value: "true" }
-    - { key: "/org/gnome/shell/extensions/jus-perfection/clock-menu-position", value: "0" } # Center 
-    - { key: "/org/gnome/shell/extensions/jus-perfection/clock-menu-position-offset", value: "0"} # Default 
-    - { key: "/org/gnome/shell/extensions/jus-perfection/keyboard-layout", value: "false" }
-    - { key: "/org/gnome/shell/extensions/jus-perfection/notification-bannter-position", value: "2" }  # Right
-    - { key: "/org/gnome/shell/extensions/jus-perfection/panel-button-padding-size", value: "11" }
-    - { key: "/org/gnome/shell/extensions/jus-perfection/panel-indicator-size", value: "1" }
-    - { key: "/org/gnome/shell/extensions/dash-to-dock/apply-custom-theme", value: "false" }
-    - { key: "/org/gnome/shell/extensions/dash-to-dock/border-radius", value: "15" }
-    - { key: "/org/gnome/shell/extensions/dash-to-dock/dock-position", value: "'BOTTOM'" }
-    - { key: "/org/gnome/shell/extensions/dash-to-dock/floating-margin", value: "10" }
-    - { key: "/org/gnome/shell/extensions/dash-to-dock/hot-keys", value: "false" }
-    - { key: "/org/gnome/shell/extensions/dash-to-dock/show-apps-at-top", value: "true" }
-    - { key: "/org/gnome/shell/extensions/dash-to-dock/transparency-mode", value: "'FIXED'" }
-    - { key: "/org/gnome/shell/extensions/pop-shell/tile-by-default", value: "true" }
-    - { key: "/org/gnome/shell/extensions/pop-shell/active-hint", value: "true" }
-    - { key: "/org/gnome/shell/extensions/pop-shell/show-title", value: "true" }
-    - { key: "/org/gnome/shell/extensions/pop-shell/gap-inner", value: "'uint32 4'" }
-    - { key: "/org/gnome/shell/extensions/pop-shell/gap-outer", value: "'uint32 4'" }
-    - { key: "/org/gnome/shell/extensions/vitals/hot-sensors", value: "['_processor_average_', '_memory_usage_', '__temperature_avg__']" }
-    - { key: "/org/gnome/shell/favorite-apps", value: "['org.gnome.Nautilus.desktop', 'firefox.desktop', 'com.todoist.Todoist.desktop', 'org.telegram.desktop.desktop', 'slack.desktop', 'md.obsidian.Obsidian.desktop', 'com.spotify.Client.desktop', 'com.alacritty.Alacritty.desktop', 'code.desktop', 'rest.insomnia.Insomnia.desktop']" }
-  become: false
+- include_tasks: ubuntu-2004.yml
+  when: (ansible_distribution == "Ubuntu" and ansible_distribution_version == "20.04") or
+        (ansible_distribution == "Pop!_OS" and ansible_distribution_version == "20.04")
+
+- include_tasks: ubuntu-2110.yml
+  when: (ansible_distribution == "Ubuntu" and ansible_distribution_version == "21.10") or
+        (ansible_distribution == "Pop!_OS" and ansible_distribution_version == "21.10")
 
 - name: 'Reboot to apply Gnome settings'
   reboot:

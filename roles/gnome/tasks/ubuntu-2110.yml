@@ -1,0 +1,46 @@
+---
+- name: 'Write GNOME personal settings with DConf'
+  community.general.dconf:
+    key: "{{ item.key }}"
+    value: "{{ item.value }}"
+    state: present
+  with_items:
+    - { key: "/org/gnome/desktop/input-sources/current", value: "'uint32 0'" }
+    - { key: "/org/gnome/desktop/input-sources/mru-sources", value: "[('xkb', 'us+alt-intl'), ('xkb', 'br')]" }
+    - { key: "/org/gnome/desktop/input-sources/per-window", value: "false" }
+    - { key: "/org/gnome/desktop/input-sources/sources", value: "[('xkb', 'br'), ('xkb', 'us+alt-intl')]" }
+    - { key: "/org/gnome/desktop/input-sources/xkb-options", value: "'@as []'" }
+    - { key: "/org/gnome/desktop/peripherals/mouse/speed", value: "'1.0'" }
+    - { key: "/org/gnome/desktop/peripherals/mouse/touchpad", value: "'0.70588235294117641'" }
+    - { key: "/org/gnome/desktop/peripherals/mouse/two-finger-scrolling-enabled", value: "true" }
+    - { key: "/org/gnome/desktop/interface/clock-format", value: "'24h'" }
+    - { key: "/org/gnome/desktop/interface/clock-show-weekday", value: "true" }
+    - { key: "/org/gnome/desktop/interface/enable-animations", value: "true" }
+    - { key: "/org/gnome/desktop/interface/enable-hot-corners", value: "false" }
+    - { key: "/org/gnome/desktop/interface/gtk-im-module", value: "'ibus'" }
+    - { key: "/org/gnome/desktop/interface/show-battery-percentage", value: "true" }
+    - { key: "/org/gnome/mutter/dynamic-workspaces", value: "false" }
+    - { key: "/org/gnome/desktop/wm/preferences/num-workspaces", value: "6" }
+    - { key: "/org/gnome/desktop/wm/keybindings/switch-input-source", value: "['<Super>space', '<Primary><Alt>k']" }
+    - { key: "/org/gnome/desktop/wm/keybindings/switch-input-source-backward", value: "['<Shift><Super>space', '<Primary><Shift><Alt>k']" }
+    - { key: "/org/gnome/desktop/wm/keybindings/switch-to-workspace-1", value: "['<Super>1']" }
+    - { key: "/org/gnome/desktop/wm/keybindings/switch-to-workspace-2", value: "['<Super>2']" }
+    - { key: "/org/gnome/desktop/wm/keybindings/switch-to-workspace-3", value: "['<Super>3']" }
+    - { key: "/org/gnome/desktop/wm/keybindings/switch-to-workspace-4", value: "['<Super>4']" }
+    - { key: "/org/gnome/desktop/wm/keybindings/switch-to-workspace-5", value: "['<Super>5']" }
+    - { key: "/org/gnome/desktop/wm/keybindings/switch-to-workspace-6", value: "['<Super>6']" }
+    - { key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings", value: "['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/']" }
+    - { key: "/org/gnome/settings-daemon/plugins/media-keys/terminal", value: "'@as []'" }
+    - { key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/binding", value: "'<Super>t'" }
+    - { key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/command", value: "'/usr/bin/alacritty'" }
+    - { key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/name", value: "'Run Alacritty'" }
+    - { key: "/org/gnome/shell/extensions/clipboard-indicator/enable-keybindings", value: "false" }
+    - { key: "/org/gnome/shell/extensions/clipboard-indicator/history-size", value: "50" }
+    - { key: "/org/gnome/shell/extensions/pop-shell/tile-by-default", value: "true" }
+    - { key: "/org/gnome/shell/extensions/pop-shell/active-hint", value: "true" }
+    - { key: "/org/gnome/shell/extensions/pop-shell/show-title", value: "true" }
+    - { key: "/org/gnome/shell/extensions/pop-shell/gap-inner", value: "'uint32 4'" }
+    - { key: "/org/gnome/shell/extensions/pop-shell/gap-outer", value: "'uint32 4'" }
+    - { key: "/org/gnome/shell/extensions/vitals/hot-sensors", value: "['_processor_average_', '_memory_usage_', '__temperature_avg__']" }
+    - { key: "/org/gnome/shell/favorite-apps", value: "['org.gnome.Nautilus.desktop', 'firefox.desktop', 'com.todoist.Todoist.desktop', 'org.telegram.desktop.desktop', 'slack.desktop', 'md.obsidian.Obsidian.desktop', 'com.spotify.Client.desktop', 'com.alacritty.Alacritty.desktop', 'code.desktop', 'rest.insomnia.Insomnia.desktop']" }
+  become: false

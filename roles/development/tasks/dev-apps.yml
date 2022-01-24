@@ -25,7 +25,7 @@
     - tk-dev
     - libffi-dev
     - liblzma-dev
-    - python-openssl
+    - python3-openssl
   environment:
     DEBIAN_FRONTEND: noninteractive
   become: true

@@ -66,6 +66,43 @@
     - peek
   environment:
     DEBIAN_FRONTEND: noninteractive
+  when: (ansible_distribution == "Ubuntu" and ansible_distribution_version == "20.04") or
+        (ansible_distribution == "Pop!_OS" and ansible_distribution_version == "20.04")
+  become: true
+
+- name: 'Install apps'
+  ansible.builtin.apt:
+    name: "{{ item }}"
+    state: latest
+  with_items:
+    - vlc
+    - gimp
+    - gparted
+    - synaptic
+    - playerctl
+    - ubuntu-restricted-extras
+    - preload
+    - alacarte
+    - gnome-tweaks
+    - apt-transport-https
+    - ca-certificates 
+    - curl
+    - software-properties-common
+    - fonts-firacode
+    - fonts-cascadia-code
+    - fonts-ibm-plex
+    - fonts-noto-extra
+    - build-essential
+    - gcc
+    - powerline
+    - alacritty
+    - network-manager-openvpn-gnome
+    - flameshot
+    - peek
+  environment:
+    DEBIAN_FRONTEND: noninteractive
+  when: (ansible_distribution == "Ubuntu" and ansible_distribution_version == "21.10") or
+        (ansible_distribution == "Pop!_OS" and ansible_distribution_version == "21.10")
   become: true
 
 - name: 'Install Dell OEM package'
