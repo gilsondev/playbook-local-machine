@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env sh
 
 # Install needed packages
 if [ -f /etc/debian_version ]; then
