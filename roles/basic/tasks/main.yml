@@ -64,9 +64,18 @@
     - network-manager-openvpn-gnome
     - flameshot
     - peek
-    - oem-somerville-bulbasaur-meta
   environment:
     DEBIAN_FRONTEND: noninteractive
+  become: true
+
+- name: 'Install Dell OEM package'
+  ansible.builtin.apt:
+    name: oem-somerville-bulbasaur-meta
+    state: latest
+  environment:
+    DEBIAN_FRONTEND: noninteractive
+  when: (ansible_distribution == "Ubuntu" and ansible_distribution_version == "20.04") or
+        (ansible_distribution == "Pop!_OS" and ansible_distribution_version == "20.04")
   become: true
 
 - name: 'Update packages to install OEM Dell XPS packages and kernel'
@@ -74,6 +83,8 @@
     name: "*"    
     state: latest
     update_cache: yes
+  when: (ansible_distribution == "Ubuntu" and ansible_distribution_version == "20.04") or
+        (ansible_distribution == "Pop!_OS" and ansible_distribution_version == "20.04")
   become: true
 
 - name: 'Install flatpak apps'
