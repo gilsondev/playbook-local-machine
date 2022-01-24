@@ -13,7 +13,13 @@ System that will be included:
 
 - PopOS 22.04
 
-## Preparing to execution
+## Install
+
+```bash
+wget -q -O - "https://raw.githubusercontent.com/gilsondev/playbook-local-machine/main/install.sh" | bash
+```
+
+## Develop the Playbook
 
 1. Clone this project
 
