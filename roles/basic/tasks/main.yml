@@ -124,6 +124,14 @@
         (ansible_distribution == "Pop!_OS" and ansible_distribution_version == "20.04")
   become: true
 
+- name: 'Install Obinskit'
+  ansible.builtin.apt:
+    deb: https://s3.hexcore.xyz/occ/linux/deb/ObinsKit_1.2.11_x64.deb
+    state: present
+  environment:
+    DEBIAN_FRONTEND: noninteractive
+  become: true
+
 - name: 'Install flatpak apps'
   community.general.flatpak:
       name: "{{ item }}"
