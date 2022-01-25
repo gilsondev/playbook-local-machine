@@ -7,7 +7,7 @@
 - name: 'Install Tmux Package Manager'
   ansible.builtin.git:
     repo: https://github.com/tmux-plugins/tpm.git
-    dest: "{{ ansible_env.HOME }}/.tmux/plugins/tmp"
+    dest: "{{ ansible_env.HOME }}/.tmux/plugins/tpm"
   become: false
 
 - name: 'Check if zinit installed'
