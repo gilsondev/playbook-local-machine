@@ -2,7 +2,7 @@
 
 # Install needed packages
 if [ -f /etc/debian_version ]; then
-    sudo apt update && sudo apt install -y git make sshpass python3-venv python3-pip
+    sudo apt update && sudo apt install -y git make sshpass python3-venv python3-pip build-essential python3-dev
 fi
 
 # Clone the project
