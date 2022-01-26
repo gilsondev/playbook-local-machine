@@ -731,10 +731,14 @@ assign [class="Alacritty"] $ws3
 assign [class="obsidian"] $ws4
 
 # Spotify
-assign [class="Spotify" instance="spotify"] $ws5
+assign [class="^Spotify*"] $ws5
+for_window [class="^Spotify*"] move to workspace $ws5
 
 # Telegram
 assign [class="TelegramDesktop"] $ws6
+
+# Youp Whatsapp
+assign [class="Youp"] $ws6
 
 ###############################################################################
 # Define execution in always mode of some apps and processes
