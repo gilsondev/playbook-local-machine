@@ -5,6 +5,7 @@
     state: latest
   with_items:
     - regolith-look-dracula
+    - regolith-look-nord
     - regolith-look-pop-os
     - i3xrocks-keyboard-layout
     - i3xrocks-memory
@@ -25,4 +26,11 @@
     url: "https://github.com/erebe/greenclip/releases/download/{{ greenclip_version }}/greenclip"
     dest: /usr/local/bin/greenclip
     mode: 'a+x'
+  become: true
+
+- name: 'Prepare flatpak dark mode'
+  ansible.builtin.command: "{{ item }}"
+  with_items:
+    - "flatpak override --filesystem=/usr/share/themes"
+    - "flatpak override --env=GTK_THEME=Nordic"
   become: true
