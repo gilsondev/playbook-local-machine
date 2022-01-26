@@ -441,7 +441,7 @@ set_from_resource $i3-wm.program.notification_ui i3-wm.program.notification_ui /
 bindsym $mod+$i3-wm.binding.notification_ui exec $i3-wm.program.notification_ui
 
 ## Launch // Clipboard Manager // <><Alt> c ##
-bindsym $mod+$alt+c exec --no-startup-id /usr/local/bin/rofi-clipboard
+bindsym $mod+$alt+c exec --no-startup-id exec rofi -modi "clipboard:greenclip print" -show clipboard -run-command '{cmd}'
 
 ## Launch // Screenshot // <><Alt><Ctrl> p ##
 bindsym $mod+$alt+Ctrl+p exec /usr/bin/flameshot gui
@@ -731,8 +731,7 @@ assign [class="Alacritty"] $ws3
 assign [class="obsidian"] $ws4
 
 # Spotify
-assign [id=146800641] $ws5
-assign [class="Spotify"] $ws5
+assign [class="Spotify" instance="spotify"] $ws5
 
 # Telegram
 assign [class="TelegramDesktop"] $ws6
