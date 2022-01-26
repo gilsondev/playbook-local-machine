@@ -124,16 +124,23 @@
         (ansible_distribution == "Pop!_OS" and ansible_distribution_version == "20.04")
   become: true
 
+- name: 'Verify if Obinskit exists'
+  stat:
+    path: /opt/ObinsKit/obinskit
+  register: obinskit_stat_result
+
 - name: 'Install Obinskit'
   ansible.builtin.apt:
     deb: https://s3.hexcore.xyz/occ/linux/deb/ObinsKit_1.2.11_x64.deb
     state: present
   environment:
     DEBIAN_FRONTEND: noninteractive
+  when: not obinskit_stat_result.stat.exists
   become: true
 
 - name: 'Fix permission keyboard to Obinskit'
   ansible.builtin.command: chmod 0666 /dev/hidraw*
+  when: ansible_distribution == "Pop!_OS"
   become: true
 
 - name: 'Install flatpak apps'
@@ -154,5 +161,8 @@
   ansible.builtin.script: 'files/install-nerd-fonts.sh'
   become: true
   become_method: sudo
+
+- include_tasks: regolith.yml
+  when: (ansible_distribution == "Ubuntu" and ansible_distribution_version == "20.04" and ansible_env.DESKTOP_SESSION == "regolith")
 
 - include_tasks: exa.yml

@@ -1,0 +1,28 @@
+---
+- name: 'Install Apps'
+  ansible.builtin.apt:
+    name: "{{ item }}" 
+    state: latest
+  with_items:
+    - regolith-look-dracula
+    - regolith-look-pop-os
+    - i3xrocks-keyboard-layout
+    - i3xrocks-memory
+    - i3xrocks-weather
+    - i3xrocks-volume
+    - i3xrocks-bluetooth
+    - i3xrocks-battery
+  environment:
+    DEBIAN_FRONTEND: noninteractive
+  become: true
+
+- name: 'Apply regolith theme'
+  ansible.builtin.command: regolith-look set nord && regolith-look refresh
+  become: false
+
+- name: 'Install greenclip'
+  get_url:
+    url: "https://github.com/erebe/greenclip/releases/download/{{ greenclip_version }}/greenclip"
+    dest: /usr/local/bin/greenclip
+    mode: 'a+x'
+  become: true

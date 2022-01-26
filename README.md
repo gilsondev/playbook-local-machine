@@ -8,6 +8,7 @@ Systems supported:
 
 - Ubuntu 20.04
 - PopOS 20.04
+- Regolith 1.6
 
 System that will be included:
 

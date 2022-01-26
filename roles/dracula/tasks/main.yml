@@ -1,20 +1,24 @@
 ---
 - name: 'Install colorscheme to Gedit'
   ansible.builtin.script: 'files/prepare-dracula-gedit.sh'
+  when: (ansible_distribution == "Ubuntu" ansible_env.DESKTOP_SESSION != "regolith")
   become: false
 
 - name: 'Copy Dracula VS Code plugin'
   ansible.builtin.copy:
     src: "files/dracula-pro.vsix"
     dest: "/tmp/dracula-pro.vsix"
+  when: (ansible_distribution == "Ubuntu" ansible_env.DESKTOP_SESSION != "regolith")
   become: true
 
 - name: 'Install colorscheme to VS Code'
   ansible.builtin.command: 'code --install-extension /tmp/dracula-pro.vsix' 
+  when: (ansible_distribution == "Ubuntu" ansible_env.DESKTOP_SESSION != "regolith")
   become: false
 
 - name: 'Install colorscheme to Alacrity'
   ansible.builtin.copy:
     src: "files/alacritty.yml"
     dest: "{{ ansible_env.HOME }}/.config/alacritty/dracula.yml"
+  when: (ansible_distribution == "Ubuntu" ansible_env.DESKTOP_SESSION != "regolith")
   become: false

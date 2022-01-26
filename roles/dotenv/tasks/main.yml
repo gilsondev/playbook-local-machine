@@ -21,6 +21,7 @@
     - { file: "files/Xresources", link: "{{ ansible_env.HOME }}/.Xresources" }
     - { file: "files/nvim", link: "{{ ansible_env.HOME }}/.config/" }
     - { file: "files/alacritty", link: "{{ ansible_env.HOME }}/.config/" }
+    - { file: "files/regolith", link: "{{ ansible_env.HOME }}/.config/" }
   become: false
 
 - name: 'Install Vim plugins'

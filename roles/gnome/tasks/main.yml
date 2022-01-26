@@ -2,7 +2,7 @@
 - name: 'Include vars'
   include_vars:
     file: ubuntu-2004.yml
-  when: (ansible_distribution == "Ubuntu" and ansible_distribution_version == "20.04") or
+  when: (ansible_distribution == "Ubuntu" and ansible_distribution_version == "20.04" and ansible_env.DESKTOP_SESSION != "regolith") or
         (ansible_distribution == "Pop!_OS" and ansible_distribution_version == "20.04")
 
 - name: 'Include vars'
@@ -14,14 +14,19 @@
 - name: 'Customize Gnome'
   import_role:
     name: petermosmans.customize-gnome
+  when: (ansible_distribution == "Ubuntu" and ansible_distribution_version == "21.10") or
+        (ansible_distribution == "Pop!_OS" and ansible_distribution_version == "21.10")
 
 - include_tasks: ubuntu-2004.yml
-  when: (ansible_distribution == "Ubuntu" and ansible_distribution_version == "20.04") or
+  when: (ansible_distribution == "Ubuntu" and ansible_distribution_version == "20.04" and ansible_env.DESKTOP_SESSION != "regolith") or
         (ansible_distribution == "Pop!_OS" and ansible_distribution_version == "20.04")
 
 - include_tasks: ubuntu-2110.yml
   when: (ansible_distribution == "Ubuntu" and ansible_distribution_version == "21.10") or
         (ansible_distribution == "Pop!_OS" and ansible_distribution_version == "21.10")
+
+- include_tasks: regolith.yml
+  when: (ansible_distribution == "Ubuntu" and ansible_distribution_version == "20.04" and ansible_env.DESKTOP_SESSION == "regolith")
 
 - name: 'Reboot to apply Gnome settings'
   reboot:

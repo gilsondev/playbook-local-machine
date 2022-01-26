@@ -131,7 +131,7 @@ export PATH=$PATH:$ANDROID_HOME/cmdline-tools/latest/bin
 export PATH=$PATH:$ANDROID_HOME/tools/bin
 
 # Bat
-export BAT_THEME="Dracula"
+export BAT_THEME="Nord"
 
 # Kube Scripts
 export PATH="$HOME/Developer/Projects/jusbrasil/jusbr-kube/scripts:$PATH"
@@ -166,9 +166,6 @@ export BROWSER=/usr/bin/firefox
 
 # Dotenv Local bins
 export PATH="$PATH:$HOME/.dotenv/bin"
-
-# Bat
-export BAT_THEME="Dracula"
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
