@@ -156,6 +156,7 @@
     - com.valvesoftware.Steam
     - org.gtk.Gtk3theme.Pop-dark
     - org.telegram.desktop
+    - com.gigitux.youp
 
 - name: 'Install Nerd Fonts'
   ansible.builtin.script: 'files/install-nerd-fonts.sh'
