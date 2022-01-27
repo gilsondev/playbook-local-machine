@@ -139,8 +139,13 @@
   become: true
 
 - name: 'Fix permission keyboard to Obinskit'
-  ansible.builtin.command: chmod 0666 /dev/hidraw0 && chmod 0666 /dev/hidraw1
-  when: ansible_distribution == "Pop!_OS"
+  ansible.builtin.file:
+    path: "{{ item }}"
+    state: file
+    mode: '0666'
+  with_items:
+    - "/dev/hidraw0"
+    - "/dev/hidraw1"
   become: true
 
 - name: 'Install flatpak apps'
