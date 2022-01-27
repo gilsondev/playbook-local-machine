@@ -139,7 +139,7 @@
   become: true
 
 - name: 'Fix permission keyboard to Obinskit'
-  ansible.builtin.command: chmod 0666 /dev/hidraw*
+  ansible.builtin.command: chmod 0666 /dev/hidraw0 && chmod 0666 /dev/hidraw1
   when: ansible_distribution == "Pop!_OS"
   become: true
 
