@@ -14,3 +14,7 @@ make setup
 
 # Run the playbook
 make provision
+
+# Reboot the machine
+echo "Restarting in 5 seconds..."
+sleep 5 && sudo systemctl reboot
