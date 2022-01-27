@@ -84,6 +84,22 @@ export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/g
 # Local bins
 export PATH="$HOME/.local/bin:$PATH"
 
+# History
+export HISTFILE=~/.zsh_history
+export HISTSIZE=1000
+export SAVEHIST=1000
+
+# Bindkey: Fix Alt and Ctrl + Arrows
+bindkey "^[[1;3C" forward-word
+bindkey "^[[1;3D" backward-word
+bindkey "^[[1;5C" forward-word
+bindkey "^[[1;5D" backward-word
+
+# Bindkey: Home/End/Delete
+bindkey  "^[[H"   beginning-of-line
+bindkey  "^[[F"   end-of-line
+bindkey  "^[[3~"  delete-char
+
 # Bullet Train
 BULLETTRAIN_TIME_SHOW=false
 
