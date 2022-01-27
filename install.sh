@@ -15,6 +15,10 @@ make setup
 # Run the playbook
 make provision
 
-# Reboot the machine
-echo "Restarting in 5 seconds..."
-sleep 5 && sudo systemctl reboot
+if [ $? -eq 0 ]; then
+    # Reboot the machine
+    echo "Restarting in 5 seconds..."
+    sleep 5 && sudo systemctl reboot
+else
+    echo "We have some error when execute the playbook. Tray again!"
+fi
