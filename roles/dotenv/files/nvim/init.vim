@@ -108,7 +108,7 @@ source ~/.config/nvim/plugins/airline.vim
 source ~/.config/nvim/plugins/ale.vim
 source ~/.config/nvim/plugins/coc.vim
 source ~/.config/nvim/plugins/commentary.vim
-" source ~/.config/nvim/plugins/dracula.vim
+source ~/.config/nvim/plugins/dracula.vim
 source ~/.config/nvim/plugins/editorconfig.vim
 source ~/.config/nvim/plugins/eunuch.vim
 source ~/.config/nvim/plugins/firenvim.vim
@@ -120,7 +120,7 @@ source ~/.config/nvim/plugins/indent-guide.vim
 source ~/.config/nvim/plugins/make.vim
 source ~/.config/nvim/plugins/markdown-preview.vim
 source ~/.config/nvim/plugins/nerdtree.vim
-source ~/.config/nvim/plugins/nord.vim
+"source ~/.config/nvim/plugins/nord.vim
 source ~/.config/nvim/plugins/pasta.vim
 source ~/.config/nvim/plugins/polyglot.vim
 source ~/.config/nvim/plugins/python.vim

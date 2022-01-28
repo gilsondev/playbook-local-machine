@@ -147,7 +147,7 @@ export PATH=$PATH:$ANDROID_HOME/cmdline-tools/latest/bin
 export PATH=$PATH:$ANDROID_HOME/tools/bin
 
 # Bat
-export BAT_THEME="Nord"
+export BAT_THEME="Dracula"
 
 # Kube Scripts
 export PATH="$HOME/Developer/Projects/jusbrasil/jusbr-kube/scripts:$PATH"
