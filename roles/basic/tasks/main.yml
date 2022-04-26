@@ -67,7 +67,8 @@
   environment:
     DEBIAN_FRONTEND: noninteractive
   when: (ansible_distribution == "Ubuntu" and ansible_distribution_version == "20.04") or
-        (ansible_distribution == "Pop!_OS" and ansible_distribution_version == "20.04")
+        (ansible_distribution == "Pop!_OS" and ansible_distribution_version == "20.04") or
+        (ansible_distribution == "Pop!_OS" and ansible_distribution_version == "22.04")
   become: true
 
 - name: 'Install apps'
